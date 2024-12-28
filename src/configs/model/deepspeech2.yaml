@@ -1,0 +1,20 @@
+_target_: src.model.DeepSpeech2Model
+n_feats: 128
+conv_channels: 32
+n_rnn_layers: 4
+rnn_hidden_size: 650
+rnn_type:
+    _target_: hydra.utils.get_class
+    path: torch.nn.LSTM
+rnn_bidirectional: True
+rnn_dropout: 0.1
+fc_hidden_size: 1300
+
+
+#_target_: src.model.DeepSpeech2
+#n_feats: 128
+#fc_hidden: 768
+#num_rnn: 7
+#dropout: 0.0
+#rnn_type: gru
+#bidirectional: True

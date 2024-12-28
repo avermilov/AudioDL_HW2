@@ -1,0 +1,18 @@
+train:
+  _target_: src.datasets.LibrispeechDataset
+  part: "train_all"
+  target_sr: 16000
+  instance_transforms: ${transforms.instance_transforms.train}
+  log_scale: True
+val:
+  _target_: src.datasets.LibrispeechDataset
+  part: "test-clean"
+  target_sr: 16000
+  instance_transforms: ${transforms.instance_transforms.inference}
+  log_scale: ${datasets.train.log_scale}
+test:
+  _target_: src.datasets.LibrispeechDataset
+  part: "test-other"
+  target_sr: 16000
+  instance_transforms: ${transforms.instance_transforms.inference}
+  log_scale: ${datasets.train.log_scale}

@@ -1,0 +1,18 @@
+defaults:
+  - model: deepspeech2
+  - metrics: example
+  - datasets: example_eval # we do not want to run inference on training data
+  - dataloader: example
+  - transforms: example
+  - _self_
+text_encoder:
+  _target_: src.text_encoder.CTCTextEncoder
+  bpe_vocab_path: data/weights/tokenizer.json
+  lm_path: data/weights/lower_4gram.arpa
+  lm_vocab_path: data/weights/librispeech_lm_vocab.txt
+inferencer:
+  device_tensors: ["spectrogram", "text_encoded"] # which tensors should be on device (ex. GPU)
+  device: auto # device name or "auto"
+  save_path: "inference_test_clean_other" # any name here, can be a dataset name
+  seed: 1
+  from_pretrained: "data/weights/model_best.pth" # path to the pretrained model
